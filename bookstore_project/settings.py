@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third-Party
     'crispy_forms',
+    'allauth',
+    'allauth.account',
     # Local
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
@@ -71,6 +73,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'bookstore_project.wsgi.application'
 
@@ -141,3 +144,22 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# django-allauth config
+SITE_ID = 1 # new
+
+AUTHENTICATION_BACKENDS = [
+        'django.contrib.auth.backends.ModelBackend',
+        'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_SESSION_REMEMBER = True # True for always remember the login users && false to no remember them OR u can remove it and let the user determine wether to be remembered or not through checking a checkbox
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE =  False #default True to ask the user to confirm the password && False to not asking him for password confirmation
+
+
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
