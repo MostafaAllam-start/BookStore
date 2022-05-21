@@ -2,13 +2,15 @@ version: '3.9'
 services:
   db:
     image: postgres
-    expose:
-      - "5432"
+    ports:
+       - 5432:5432
     environment:
       POSTGRES_PASSWORD: 1234MMfa
+    volumes:
+       - code:/code/db
   web:
     build: .
-    command: python /code/manage.py runserver 0.0.0.0:8000
+    command: ./docker-entrypoint.sh
     environment:
        - SECRET_KEY=django-insecure-*@e^!9g%8+pr&g@m^##&_5+_optmgm#(cqiob=thmm66n%dxy%
        - DEBUG=1
@@ -18,3 +20,5 @@ services:
       - 8000:8000
     depends_on:
       - db
+volumes:
+  code:
