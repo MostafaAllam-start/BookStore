@@ -144,6 +144,9 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
+MEDIA_ROOT='/media/'
+MEDIA_URL = os.path.join(BASE_DIR, 'media/')
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # django-allauth config
@@ -167,3 +170,4 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 
 DEFAULT_FROM_EMAIL = 'admin@djangobookstore.com'
+
